@@ -1,7 +1,6 @@
 #!/bin/bash
 
 install_service() {
-
 	echo "Installation von Service geoserver in Netzwerk '${NETWORK_NAME}'"
 	read -p "Optional neuer Service-Name (Default 'geoserver'): " SERVICE_NAME
 	if [ -z "$SERVICE_NAME" ]; then
@@ -9,7 +8,7 @@ install_service() {
 	fi
 	echo "SERVICE_NAME ${SERVICE_NAME} gesetzt."
 
-  read -p "Servername (Default 'geoserver'): " HOSTNAME
+	read -p "Servername (Default 'geoserver'): " HOSTNAME
 	if [ -z "$HOSTNAME" ]; then
 		HOSTNAME="geoserver"
 	fi
@@ -29,16 +28,27 @@ install_service() {
 	echo  "Docker compose-Datei von Template-Verzeichnis in Service-Verzeichnis kopiert."
 	mkdir ${SERVICE_PATH}/data_dir
 	echo  "Geoserver data_dir angelegt."
-  chown gisadmin.gisadmin ${SERVICE_PATH}/data_dir
+        chown gisadmin:gisadmin ${SERVICE_PATH}/data_dir
 	mkdir ${SERVICE_PATH}/logs
 	echo  "Geoserver log-Verzeichnis angelegt."
-  chown gisadmin.gisadmin ${SERVICE_PATH}/logs
-  # Link auf die Logdatei von Geoserver im logs Verzeichnis von Tomcat
-  ln -s ${SERVICE_PATH}/data_dir/logs/geoserver.log ${SERVICE_PATH}/logs/geoserver.log
+        chown gisadmin:gisadmin ${SERVICE_PATH}/logs
+        # Link auf die Logdatei von Geoserver im logs Verzeichnis von Tomcat
+        ln -s ${SERVICE_PATH}/data_dir/logs/geoserver.log ${SERVICE_PATH}/logs/geoserver.log
 	echo  "Symlink auf geoserver-log-Datei im Service-Verzeichnis angelegt."
+
+	NGINX_PATH="/home/gisadmin/networks/proxy/services/proxy/nginx"
+        if [ -d "$NGINX_PATH" ]; then
+        ls -l "$NGINX_PATH/server-available/" | grep '^d' | awk '{print $NF}'
+	read -p "Bitte wählen Sie einen Domainname aus: " DOMAIN_NAME
+	cp    ${USER_DIR}/kvwmap-server/service-templates/geoserver/nginx.conf ${NGINX_PATH}/server-available/${DOMAIN_NAME}/locations-available/${NETWORK_NAME}_geoserver.conf
+	chown gisadmin:gisadmin ${NGINX_PATH}/server-available/${DOMAIN_NAME}/locations-available/${NETWORK_NAME}_geoserver.conf
+	ln -s -r ${NGINX_PATH}/server-available/${DOMAIN_NAME}/locations-available/${NETWORK_NAME}_geoserver.conf ${NGINX_PATH}/server-enabled/${DOMAIN_NAME}/locations-enabled/${NETWORK_NAME}_geoserver.conf
+	echo "Nginx Konfigurationsdatei in server-enabled angelegt und den proxy reloaden!"
+	echo "Installation von ${SERVICE_NAME} in ${NETWORK_NAME} beendet."
+        else
 	cp    ${USER_DIR}/kvwmap-server/service-templates/geoserver/nginx.conf ${USER_DIR}/networks/proxy/services/proxy/nginx/sites-available/geoserver.conf
 	#ln -s ${USER_DIR}/networks/proxy/services/proxy/nginx/sites-available/geoserver.conf ${USER_DIR}/networks/proxy/services/proxy/nginx/sites-enabled/geoserver.conf
 	echo  "Nginx Konfigurationsdatei in sites-available angelegt. Zur Veröffentlichung des Services nach außen die Datei ${USER_DIR}/networks/proxy/services/proxy/nginx/sites-enabled/geoserver.conf bearbeiten einen dynamischen Link in sites-enabled anlegen und den proxy reloaden!"
-
 	echo "Installation von ${SERVICE_NAME} in ${NETWORK_NAME} beendet."
+	fi
 }
