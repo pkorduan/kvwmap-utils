@@ -92,6 +92,7 @@ EOF
 (
 cat << EOF
 <?
+"Browser öffnen mit der Adresse: http://${DOMAIN}/install.php"
 define('MYSQL_ROOT_PASSWORD', '${MYSQL_ROOT_PASSWORD}');
 define('MYSQL_PASSWORD', '${MYSQL_PASSWORD}');
 define('POSTGRES_PASSWORD', '${POSTGRES_PASSWORD}');
