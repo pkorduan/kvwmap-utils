@@ -29,7 +29,6 @@ export MYSQL_ROOT_PASSWORD=$(openssl rand -base64 24)
 export MYSQL_USER="kvwmap"
 export MYSQL_PASSWORD=$(openssl rand -base64 24)
 export POSTGRES_PASSWORD=$(openssl rand -base64 24)
-export POSTGRES_ROOT_PASSWORD=$(openssl rand -base64 24)
 export PGADMIN_DEFAULT_PASSWORD=$(openssl rand -base64 24)
 export PGADMIN_DEFAULT_EMAIL
 export KVWMAP_PASSWORD=$(openssl rand -base64 24)
@@ -93,13 +92,12 @@ EOF
 (
 cat << EOF
 <?php
-"Browser öffnen mit der Adresse: http://${DOMAIN}/install.php"
+define('WEB_BROWSER', 'Browser öffnen mit der Adresse: http://${DOMAIN}/install.php');
 define('MYSQL_ROOT_PASSWORD', '${MYSQL_ROOT_PASSWORD}');
 define('MYSQL_PASSWORD', '${MYSQL_PASSWORD}');
 define('POSTGRES_PASSWORD', '${POSTGRES_PASSWORD}');
-define('POSTGRES_ROOT_PASSWORD', '${POSTGRES_ROOT_PASSWORD}');
 define('PGADMIN_PASSWORD', '${PGADMIN_DEFAULT_PASSWORD}');
 define('KVWMAP_PASSWORD', '${KVWMAP_PASSWORD=}');
 ?>
 EOF
-) > "$USER_DIR"/www/apps/kvwmap/passwords.php
+) > "$USER_DIR"/passwords.php
