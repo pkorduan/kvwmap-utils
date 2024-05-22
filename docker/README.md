@@ -1,5 +1,8 @@
 # Supported tags and respective Dockerfile
 	* latest [docker/dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/Dockerfile)
+    * 2.3.0  [docker/2.3.0/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.3.0/Dockerfile)
+    * 2.2.15 [docker/2.2.15/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.2.15/Dockerfile)
+    * 2.2.14 [docker/2.2.14/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.2.14/Dockerfile)
 	* 2.2.13 [docker/2.2.13/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.2.13/Dockerfile)
 	* 2.2.12 [docker/2.2.12/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.2.12/Dockerfile)
 	* 2.2.11 [docker/2.2.11/Dockerfile](https://github.com/pkorduan/kvwmap-server/blob/master/docker/2.2.11/Dockerfile)
@@ -248,6 +251,12 @@ follow the instruction of certbot and choose option 1 for standalone self instal
 dcm run web
 
 # Changelog
+# 2.3.0
+    * PHP8 and Mapserver8
+# 2.2.15
+    * Security increasing for Apache
+# 2.2.14
+    * entrypoint (kvwmap-start) can handle signals
 # 2.2.13
     * Decrease the Mapserver Version
 # 2.2.12
