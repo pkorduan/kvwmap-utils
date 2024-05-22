@@ -30,6 +30,7 @@ services:
       - ./cron/load_cron_files:/etc/cron.hourly/load_cron_files
       - ./php/8.2:/etc/php/8.2
       - ./www:/var/www
+      - ./etc:/usr/local/etc
       - ./log:/var/log/apache2
       - ${USER_DIR}/networks/${NETWORK_NAME}/services/pgsql/config/.pgpass:/root/.pgpass
       - ${USER_DIR}/networks/${NETWORK_NAME}/services/pgsql/config/.pgpass_gisadmin:/home/gisadmin/.pgpass
