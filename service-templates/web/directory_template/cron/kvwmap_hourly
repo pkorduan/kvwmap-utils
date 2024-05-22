@@ -1,12 +1,19 @@
 #!/bin/bash
-CRONTAB_FILE="/var/www/cron/crontab_gisadmin"
+CRONTAB_DIR="/var/www/cron"
+
+CRONTAB_USER=gisadmin
+CRONTAB_FILE="$CRONTAB_DIR/crontab_$CRONTAB_USER"
+cat $CRONTAB_DIR/$CRONTAB_USER/* > $CRONTAB_FILE
 if [ -s $CRONTAB_FILE ] ; then
-  crontab -u gisadmin $CRONTAB_FILE
-  echo "`date` Update gisadmins crontab." >> /var/www/logs/cron/cron.log
+  crontab -u $CRONTAB_USER $CRONTAB_FILE
+  #echo "`date` Update $CRONTAB_USER crontab." >> /var/www/logs/cron/cron.log
 fi
 
-CRONTAB_FILE="/var/www/cron/crontab_root"
+CRONTAB_USER=root
+CRONTAB_FILE="$CRONTAB_DIR/crontab_$CRONTAB_USER"
+cat $CRONTAB_DIR/$CRONTAB_USER/* > $CRONTAB_FILE
 if [ -s $CRONTAB_FILE ] ; then
-  crontab -u root $CRONTAB_FILE
-  echo "`date` Update roots crontab." >> /var/www/logs/cron/cron.log
+  crontab -u $CRONTAB_USER $CRONTAB_FILE
+  #echo "`date` Update $CRONTAB_USER crontab." >> /var/www/logs/cron/cron.log
 fi
+
