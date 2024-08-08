@@ -2,7 +2,7 @@ version: "3.6"
 services:
   ${SERVICE_NAME}:
     hostname: ${NETWORK_NAME}_${SERVICE_NAME}
-    image: kartoza/geoserver:2.24.2
+    image: kartoza/geoserver:latest
     container_name: ${NETWORK_NAME}_${SERVICE_NAME}
     user: root
     environment:
