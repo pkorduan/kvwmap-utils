@@ -2,37 +2,37 @@
 ## Voraussetzungen
  * Packete die im Standard installiert werden
    ```
-    apt-utils
-    lshw
-    git
-    jq
-    sendmail
-    tree
-    unzip
-    wget
-    nano
-    htop
-    openssl
-    gosu
-    curl
-    fish
-    ca-certificates
-    curl
-    gnupg
-    zstd
-    docker.io
-    docker-compose
-    apparmor
-    python3
-    python3-dev
-    python3-jinja2
-    python3-psutil
-    python3-setuptools
-    python3-pip
-    lm-sensors
-    libpam-pwquality
-    zabbix-agent
-    borgbackup
+sudo apt update && sudo apt install -y \
+apt-utils \
+lshw \
+git \
+jq \
+sendmail \
+tree \
+unzip \
+wget \
+nano \
+htop \
+openssl \
+gosu \
+curl \
+fish \
+ca-certificates \
+gnupg \
+zstd \
+docker.io \
+docker-compose \
+apparmor \
+python3 \
+python3-dev \
+python3-jinja2 \
+python3-psutil \
+python3-setuptools \
+python3-pip \
+lm-sensors \
+libpam-pwquality \
+zabbix-agent \
+borgbackup
     ```
  * Uid: (17000/gisadmin)   Gid: ( 1700/gisadmin)
  * ```git clone https://github.com/pkorduan/kvwmap-server.git```
