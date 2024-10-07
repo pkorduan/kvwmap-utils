@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ${SERVICE_NAME}:
+    image: certbot/certbot:latest
+    volumes:
+      - ${USER_DIR}/networks/proxy/services/proxy/letsencrypt:/etc/letsencrypt
+      - ${USER_DIR}/networks/proxy/services/proxy/www/html:/var/www/html
