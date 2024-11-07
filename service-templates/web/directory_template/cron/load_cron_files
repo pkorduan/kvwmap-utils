@@ -2,7 +2,7 @@
 CRONTAB_DIR="/var/www/cron"
 CRONTAB_FILE="$CRONTAB_DIR/crontab_gisadmin"
 if [ -d "$CRONTAB_DIR/gisadmin" ]; then
-  cat "$CRONTAB_DIR/gisadmin/*" > $CRONTAB_FILE
+  cat $CRONTAB_DIR/gisadmin/* > $CRONTAB_FILE
 fi
 if [ -s $CRONTAB_FILE ] ; then
   crontab -u gisadmin $CRONTAB_FILE
@@ -11,7 +11,7 @@ fi
 
 CRONTAB_FILE="$CRONTAB_DIR/crontab_root"
 if [ -d "$CRONTAB_DIR/root" ]; then
-  cat "$CRONTAB_DIR/root/*" > $CRONTAB_FILE
+  cat $CRONTAB_DIR/root/* > $CRONTAB_FILE
 fi
 if [ -s $CRONTAB_FILE ] ; then
   crontab -u root $CRONTAB_FILE
