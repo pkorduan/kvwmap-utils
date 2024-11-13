@@ -7,8 +7,8 @@ services:
     restart: always
     environment:
       - PMA_HOST=mysql
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_USER=$MARIADB_USER
+      - MYSQL_PASSWORD=$MARIADB_PASSWORD
       - TERM=xterm
       - COLUMNS=180
       - LINES=200
