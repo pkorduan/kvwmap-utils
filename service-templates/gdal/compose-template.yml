@@ -8,7 +8,7 @@ services:
         aliases:
           - gdal
           - gdalcmdserver
-    image: pkorduan/gdal-http:0.2.1
+    image: pkorduan/gdal-http:latest
     restart: "always"
     environment:
       - PGSQL_PASSFILE=/home/gisadmin/.pgpass
