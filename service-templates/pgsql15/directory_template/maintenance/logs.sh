@@ -14,4 +14,4 @@ else
 fi
 
 ZSTD_CLEVEL=19 find "$1" -type f -name "*.log" -mtime +1 -exec echo {} \; -exec zstd --rm -T3 -19 -z {} \;
-find "$1" -type f -name "*.log" -mtime +"$deleteAfter" -exec rm {} \;
+find "$1" -type f \( -name "*.log" -o -name "*.zst" \) -mtime +"$deleteAfter" -exec rm {} \;
