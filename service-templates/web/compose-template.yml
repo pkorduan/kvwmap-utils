@@ -2,7 +2,7 @@ version: "3.6"
 services:
   ${SERVICE_NAME}:
     hostname: ${NETWORK_NAME}_${SERVICE_NAME}
-    image: pkorduan/kvwmap-server:2.2.16
+    image: pkorduan/kvwmap-server:2.3.0
     container_name: ${NETWORK_NAME}_${SERVICE_NAME}
     restart: "always"
     environment:
@@ -28,7 +28,8 @@ services:
       - ./apache2/mods-available:/etc/apache2/mods-available
       - ./apache2/mods-enabled:/etc/apache2/mods-enabled
       - ./cron/load_cron_files:/etc/cron.hourly/load_cron_files
-      - ./php/7.4:/etc/php/7.4
+      #- ./php/7.4:/etc/php/7.4
+      - ./php/8.2:/etc/php/8.2
       - ./www:/var/www
       - ./log:/var/log/apache2
       - ${USER_DIR}/networks/${NETWORK_NAME}/services/pgsql/config/.pgpass:/root/.pgpass
