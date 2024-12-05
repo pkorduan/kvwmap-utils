@@ -27,7 +27,7 @@ services:
       - LC_TELEPHONE=C.UTF-8
       - LC_MEASUREMENT=C.UTF-8
       - LC_IDENTIFICATION=C.UTF-8
-      - TERM=Linux
+      - TERM=linux
     volumes:
       - ${USER_DIR}/networks/${NETWORK_NAME}/services/pgsql/config/.pgpass:/root/.pgpass
       - ${USER_DIR}/networks/${NETWORK_NAME}/services/pgsql/config/.pgpass_gisadmin:/home/gisadmin/.pgpass
