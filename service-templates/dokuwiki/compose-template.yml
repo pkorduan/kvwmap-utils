@@ -1,0 +1,18 @@
+version: "3.6"
+services:
+  ${SERVICE_NAME}:
+    hostname: ${NETWORK_NAME}_${SERVICE_NAME}
+    container_name: ${NETWORK_NAME}_${SERVICE_NAME}
+    image: dokuwiki/dokuwiki:stable
+    restart: always
+    volumes:
+      - "./html:/var/www/html"
+      - "./storage:/storage"
+      - "./apache2:/etc/apache2"
+      #- "./dokuwiki/data:/storage/data"
+      #- "./dokuwiki/bin:/var/www/html/bin"
+      #- "./dokuwiki/conf:/storage/conf"
+networks:
+    default:
+        name: ${NETWORK_NAME}
+        external: true
